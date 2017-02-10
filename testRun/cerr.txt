@@ -1,0 +1,57 @@
+***** parsing program arguments ****************************
+
+***** parsing program arguments ****************************
+
+***** loading additional simulation parameters *************
+ from file: simulator.ini
+ k0=-86 k1=2.5 k2=100 k3=0.9 k4=0.1 k5=0.002 k6=0.03 k7=1 k8=325
+ k0=-86 k1=2.5 k2=100 k3=0.85 k4=0.1 k5=0.003 k6=0.033 k7=1.2 k8=355
+ k min = <-86.1,2.4,99,0.8,0.1,0.0001,0.01,0.01,250>
+ k max = <-86,2.6,101,0.9,0.1,0.005,0.2,0.2,450>
+ AP interpolation set to endo-epi (string validity not checked yet)
+ free Wohlfart koefficients <5,6,7,8>
+
+***** loading optimization parameters **********************
+ targets filename = target_v2-real.ecg.column
+ criterization mode = 1
+ number of generations = 1
+
+***** setting up EkgSim ************************************
+measuring points: 
+ -> 0, 102, 8
+ -> 0, 32, 83
+***** loading additional simulation parameters *************
+ from file: simulator.ini
+ k0=-86 k1=2.5 k2=100 k3=0.9 k4=0.1 k5=0.002 k6=0.03 k7=1 k8=325
+ k0=-86 k1=2.5 k2=100 k3=0.85 k4=0.1 k5=0.003 k6=0.033 k7=1.2 k8=355
+ k min = <-86.1,2.4,99,0.8,0.1,0.0001,0.01,0.01,250>
+ k max = <-86,2.6,101,0.9,0.1,0.005,0.2,0.2,450>
+ AP interpolation set to endo-epi (string validity not checked yet)
+ free Wohlfart koefficients <5,6,7,8>
+
+***** loading optimization parameters **********************
+ targets filename = target_v2-real.ecg.column
+ criterization mode = 1
+ number of generations = 1
+
+***** setting up EkgSim ************************************
+measuring points: 
+ -> 0, 102, 8
+ -> 0, 32, 83
+
+***** applaying (and checking) settings ********************
+
+***** printout of the simulator setup **********************
+
+***** loading targets and setting up optimization **********
+
+***** applaying (and checking) settings ********************
+
+***** printout of the simulator setup **********************
+
+***** loading targets and setting up optimization **********
+
+
+##### Running EkgSim v3 based optimization, DE with MPI on 2 CPUs #####
+***** starting first evaluation ****************************
+***** starting first evaluation ****************************
