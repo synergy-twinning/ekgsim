@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="simulator.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="support.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4517" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="30" />
+			<Collapse line="31" />
+			<Collapse line="68" />
+			<Collapse line="74" />
+			<Collapse line="80" />
+			<Collapse line="99" />
+			<Collapse line="103" />
+			<Collapse line="107" />
+			<Collapse line="111" />
+			<Collapse line="115" />
+			<Collapse line="125" />
+			<Collapse line="130" />
+			<Collapse line="134" />
+			<Collapse line="140" />
+			<Collapse line="154" />
+			<Collapse line="155" />
+			<Collapse line="168" />
+			<Collapse line="179" />
+			<Collapse line="181" />
+			<Collapse line="188" />
+			<Collapse line="190" />
+			<Collapse line="198" />
+			<Collapse line="209" />
+			<Collapse line="212" />
+			<Collapse line="213" />
+		</Folding>
+	</File>
+	<File name="timer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="938" topLine="26" />
+		</Cursor>
+	</File>
+	<File name="matrix.h" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4923" topLine="115" />
+		</Cursor>
+		<Folding>
+			<Collapse line="16" />
+			<Collapse line="59" />
+		</Folding>
+	</File>
+	<File name="simulator.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1163" topLine="27" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>

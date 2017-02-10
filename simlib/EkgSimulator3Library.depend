@@ -1,0 +1,203 @@
+# depslib dependency file v1.0
+1204031605 source:/home/matjaz/Delo/EkgSim/simlib/lib_main.cpp
+	"sim_lib.h"
+
+1338548870 "
+
+1263387552 /home/matjaz/Delo/EkgSim/simlib/sim_lib.h
+	"simulator.h"
+
+1338548870 .h"
+
+1263383347 /home/matjaz/Delo/EkgSim/simlib/simulator.h
+	"support.h"
+
+1233321758 /home/matjaz/Delo/EkgSim/simlib/support.h
+	<iostream>
+	<iomanip>
+	<sstream>
+	<fstream>
+	<string>
+	<sstream>
+	<algorithm>
+	<vector>
+	<queue>
+	<map>
+	<cmath>
+	<ctime>
+	<boost/old_foreach.hpp>
+	<Ini.h>
+	<Pattern/Hypermatrix.h>
+	"columnFile.h"
+	"Wohlfart.h"
+
+1338548870 h"
+
+1161250370 /home/matjaz/Delo/EkgSim/simlib/columnFile.h
+	<iostream>
+	<vector>
+	<string>
+	<fstream>
+	<sstream>
+
+1338548870 
+
+1263396475 /home/matjaz/Delo/EkgSim/simlib/Wohlfart.h
+	<algorithm>
+	<cmath>
+	<vector>
+
+1273752957 source:/home/matjaz/Delo/EkgSim/simlib/simulator.cpp
+	"simulator.h"
+	"timer.h"
+
+1233316255 /home/matjaz/Delo/EkgSim/simlib/timer.h
+	<vector>
+	<windows.h>
+	<sys/time.h>
+
+1290692107 h>
+
+1290692107 source:/home/matjaz/src/EkgSim/simlib/lib_main.cpp
+	"sim_lib.h"
+
+1296220172 /home/matjaz/src/EkgSim/simlib/sim_lib.h
+	"simulator.h"
+
+1296220209 /home/matjaz/src/EkgSim/simlib/simulator.h
+	"matrix.h"
+
+1295346925 /home/matjaz/src/EkgSim/simlib/matrix.h
+	"support.h"
+
+1290700093 /home/matjaz/src/EkgSim/simlib/support.h
+	<iostream>
+	<iomanip>
+	<sstream>
+	<fstream>
+	<string>
+	<sstream>
+	<algorithm>
+	<vector>
+	<queue>
+	<map>
+	<cmath>
+	<ctime>
+	<boost/old_foreach.hpp>
+	<Ini.h>
+	<Pattern/Hypermatrix.h>
+	"columnFile.h"
+	"Wohlfart.h"
+
+1290692107 /home/matjaz/src/EkgSim/simlib/columnFile.h
+	<vector>
+	<string>
+	<fstream>
+	<sstream>
+
+1290692107 /home/matjaz/src/EkgSim/simlib/Wohlfart.h
+	<algorithm>
+	<cmath>
+	<vector>
+
+1296215408 source:/home/matjaz/src/EkgSim/simlib/simulator.cpp
+	"simulator.h"
+	"timer.h"
+
+1290692107 /home/matjaz/src/EkgSim/simlib/timer.h
+	<vector>
+	<windows.h>
+	<sys/time.h>
+
+1338548870 source:e:\src\ekgsim\simlib\lib_main.cpp
+	"sim_lib.h"
+
+1338548870 e:\src\ekgsim\simlib\sim_lib.h
+	"simulator.h"
+
+1338548870 e:\src\ekgsim\simlib\simulator.h
+	"matrix.h"
+
+1338548870 e:\src\ekgsim\simlib\matrix.h
+	"support.h"
+
+1338548870 e:\src\ekgsim\simlib\support.h
+	<iostream>
+	<iomanip>
+	<sstream>
+	<fstream>
+	<string>
+	<sstream>
+	<algorithm>
+	<vector>
+	<queue>
+	<map>
+	<cmath>
+	<ctime>
+	<boost/old_foreach.hpp>
+	<Ini.h>
+	<Pattern/Hypermatrix.h>
+	"columnFile.h"
+	"Wohlfart.h"
+
+1338548870 e:\src\ekgsim\simlib\columnfile.h
+	<vector>
+	<string>
+	<fstream>
+	<sstream>
+
+1338548870 e:\src\ekgsim\simlib\wohlfart.h
+	<algorithm>
+	<cmath>
+	<vector>
+
+1338548870 source:/home/matjaz/src/EkgSim/simlib/lib_main.cpp
+	"sim_lib.h"
+
+1338548870 /home/matjaz/src/EkgSim/simlib/sim_lib.h
+	"simulator.h"
+
+1338548870 /home/matjaz/src/EkgSim/simlib/simulator.h
+	"matrix.h"
+
+1348488961 /home/matjaz/src/EkgSim/simlib/matrix.h
+	"support.h"
+
+1346666739 /home/matjaz/src/EkgSim/simlib/support.h
+	<iostream>
+	<iomanip>
+	<sstream>
+	<fstream>
+	<string>
+	<sstream>
+	<algorithm>
+	<vector>
+	<queue>
+	<map>
+	<cmath>
+	<ctime>
+	<Ini.h>
+	<Pattern/Hypermatrix.h>
+	"columnFile.h"
+	"Wohlfart.h"
+
+1338548870 /home/matjaz/src/EkgSim/simlib/columnFile.h
+	<vector>
+	<string>
+	<fstream>
+	<sstream>
+
+1338548870 /home/matjaz/src/EkgSim/simlib/Wohlfart.h
+	<algorithm>
+	<cmath>
+	<vector>
+
+1346666656 source:/home/matjaz/src/EkgSim/simlib/simulator.cpp
+	"simulator.h"
+	"timer.h"
+
+1338548870 /home/matjaz/src/EkgSim/simlib/timer.h
+	<vector>
+	<windows.h>
+	<sys/time.h>
+

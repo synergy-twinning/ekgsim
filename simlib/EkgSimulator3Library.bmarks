@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<BrowseTracker_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="Wohlfart.h" open="0" top="0" tabpos="0">
+		<Cursor position="609" topLine="25" />
+	</File>
+	<File name="matrix.h" open="1" top="0" tabpos="1">
+		<Cursor position="70" topLine="153" />
+	</File>
+	<File name="sim_lib.h" open="0" top="0" tabpos="0">
+		<Cursor position="6374" topLine="0" />
+	</File>
+	<File name="simulator.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="3308" topLine="91" />
+	</File>
+	<File name="simulator.h" open="0" top="0" tabpos="0">
+		<Cursor position="11610" topLine="314" />
+	</File>
+	<File name="support.h" open="0" top="0" tabpos="0">
+		<Cursor position="207" topLine="0" />
+	</File>
+</BrowseTracker_layout_file>

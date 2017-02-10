@@ -1,0 +1,1 @@
+This directory contains ekg simulator static library (includes, source, and binary)
