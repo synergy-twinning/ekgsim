@@ -2,18 +2,18 @@
 ## Auto Generated makefile by CodeLite IDE
 ## any manual changes will be erased      
 ##
-## Debug
+## Release
 ProjectName            :=ekgSim
-ConfigurationName      :=Debug
+ConfigurationName      :=Release
 WorkspacePath          :=/home/matjaz/Todo/BogdanFilipic/EkgSim
 ProjectPath            :=/home/matjaz/Todo/BogdanFilipic/EkgSim
-IntermediateDirectory  :=Debug
+IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Matjaž
-Date                   :=10/02/17
+Date                   :=13/02/17
 CodeLitePath           :=/home/matjaz/.codelite
 LinkerName             :=/usr/bin/mpic++
 SharedObjectLinkerName :=/usr/bin/mpic++ -shared -fPIC
@@ -28,7 +28,7 @@ LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
 OutputFile             :=$(IntermediateDirectory)/$(ProjectName)
-Preprocessors          :=
+Preprocessors          :=$(PreprocessorSwitch)NDEBUG 
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
@@ -36,12 +36,12 @@ ObjectsFileList        :="ekgSim.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=mkdir -p
 LinkOptions            :=  
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)copyOfLibs $(IncludeSwitch)/home/matjaz/include $(IncludeSwitch)simlib 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)copyOfLibs $(IncludeSwitch)simlib 
 IncludePCH             := 
 RcIncludePath          := 
 Libs                   := $(LibrarySwitch)Ini $(LibrarySwitch)Arguments $(LibrarySwitch)Random $(LibrarySwitch)dl $(LibrarySwitch)simlib 
 ArLibs                 :=  "Ini" "Arguments" "Random" "dl" "simlib" 
-LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)copyOfLibs $(LibraryPathSwitch)simlib/Debug 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)copyOfLibs $(LibraryPathSwitch)simlib/Release 
 
 ##
 ## Common variables
@@ -50,8 +50,8 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)copyOfLibs $
 AR       := /usr/bin/ar rcu
 CXX      := /usr/bin/mpic++
 CC       := /usr/bin/mpicc
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
-CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -O2 -Wall $(Preprocessors)
+CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := /usr/bin/as
 
@@ -72,25 +72,18 @@ Objects=$(Objects0)
 .PHONY: all clean PreBuild PrePreBuild PostBuild MakeIntermediateDirs
 all: $(OutputFile)
 
-$(OutputFile): $(IntermediateDirectory)/.d ".build-debug/simlib" $(Objects) 
+$(OutputFile): $(IntermediateDirectory)/.d $(Objects) 
 	@$(MakeDirCommand) $(@D)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
-".build-debug/simlib":
-	@$(MakeDirCommand) ".build-debug"
-	@echo stam > ".build-debug/simlib"
-
-
-
-
 MakeIntermediateDirs:
-	@test -d Debug || $(MakeDirCommand) Debug
+	@test -d ./Release || $(MakeDirCommand) ./Release
 
 
 $(IntermediateDirectory)/.d:
-	@test -d Debug || $(MakeDirCommand) Debug
+	@test -d ./Release || $(MakeDirCommand) ./Release
 
 PreBuild:
 
@@ -120,6 +113,6 @@ $(IntermediateDirectory)/sim.cpp$(PreprocessSuffix): sim.cpp
 ## Clean
 ##
 clean:
-	$(RM) -r Debug/
+	$(RM) -r ./Release/
 
 
