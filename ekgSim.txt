@@ -1,1 +1,1 @@
-Debug/main.cpp.o Debug/sim.cpp.o
+./Release/main.cpp.o ./Release/sim.cpp.o

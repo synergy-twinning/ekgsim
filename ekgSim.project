@@ -31,7 +31,6 @@
       <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="copyOfLibs"/>
-        <IncludePath Value="/home/matjaz/include"/>
         <IncludePath Value="simlib"/>
       </Compiler>
       <Linker Options="" Required="yes">
@@ -80,13 +79,12 @@
     <Configuration Name="Release" CompilerType="mpi GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
-        <IncludePath Value=".."/>
-        <IncludePath Value="/home/matjaz/include"/>
+        <IncludePath Value="copyOfLibs"/>
         <IncludePath Value="simlib"/>
         <Preprocessor Value="NDEBUG"/>
       </Compiler>
       <Linker Options="" Required="yes">
-        <LibraryPath Value="EkgSimSourceForSharing"/>
+        <LibraryPath Value="copyOfLibs"/>
         <LibraryPath Value="simlib/Release"/>
         <Library Value="Ini"/>
         <Library Value="Arguments"/>

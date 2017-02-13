@@ -4,13 +4,13 @@
   <Project Name="ekgSim" Path="ekgSim.project" Active="Yes"/>
   <Project Name="AMS-DEMO" Path="AMS-DEMO/AMS-DEMO.project" Active="No"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
       <Project Name="simlib" ConfigName="Debug"/>
       <Project Name="ekgSim" ConfigName="Debug"/>
       <Project Name="AMS-DEMO" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="no">
+    <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="simlib" ConfigName="Release"/>
       <Project Name="ekgSim" ConfigName="Release"/>
