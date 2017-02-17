@@ -24,6 +24,14 @@ Release/ekgSim test -sim parameters -out result
 # result.column will contain _n+1_ columns, first is the time in milliseconds, followed by the _n_ simulated ECGs for all the measuring points
 ~~~~
 
+Some of the results are also output to the standard output, for example:
+~~~~
+...
+eval 1   simulation done in 439.131 seconds
+ criteria = <0.099919,0.012262>, violation = 0
+All done
+~~~~
+
 # Running the optimization
 ## Sequential mode
 
@@ -39,7 +47,7 @@ Several files will be created as a result:
 
 ## Parallel optimization
 
-Parallel execution is supported on MPI enabled systems. Parallelization is done on the level of optimization only. This means that optimization will evaluate individuals (run individual simulations and evaluate their results under one or more criteria) in parallel on multiple machines or processes within the same machine.
+Parallel execution is supported on MPI enabled systems. Parallelization is done on the level of optimization only. This means that optimization will evaluate individuals (run individual simulations and evaluate their results under one or more criteria) in parallel on multiple machines or processes within the same machine. Apart from the execution command line, everything is the same as when running the program sequentially.
 
 ~~~~
 # execute the simulator through MPI call on 16 processors:
