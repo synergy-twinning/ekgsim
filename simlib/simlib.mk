@@ -2,18 +2,18 @@
 ## Auto Generated makefile by CodeLite IDE
 ## any manual changes will be erased      
 ##
-## Debug
+## Release
 ProjectName            :=simlib
-ConfigurationName      :=Debug
-WorkspacePath          :=/home/matjaz/Todo/BogdanFilipic/EkgSim
-ProjectPath            :=/home/matjaz/Todo/BogdanFilipic/EkgSim/simlib
-IntermediateDirectory  :=./Debug
+ConfigurationName      :=Release
+WorkspacePath          :=.
+ProjectPath            :=.
+IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Matjaž
-Date                   :=13/02/17
+Date                   :=21/02/17
 CodeLitePath           :=/home/matjaz/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -36,7 +36,7 @@ ObjectsFileList        :="simlib.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=mkdir -p
 LinkOptions            :=  
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch).. $(IncludeSwitch)../copyOfLibs 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)../copyOfLibs $(IncludeSwitch)AMD-DEMO 
 IncludePCH             := 
 RcIncludePath          := 
 Libs                   := 
@@ -50,8 +50,8 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)copyOfLibs
 AR       := /usr/bin/ar rcu
 CXX      := /usr/bin/g++
 CC       := /usr/bin/gcc
-CXXFLAGS :=  -g $(Preprocessors)
-CFLAGS   :=  -g $(Preprocessors)
+CXXFLAGS :=  -std=c++11 $(Preprocessors)
+CFLAGS   :=   $(Preprocessors)
 ASFLAGS  := 
 AS       := /usr/bin/as
 
@@ -77,15 +77,15 @@ $(OutputFile): $(Objects)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(AR) $(ArchiveOutputSwitch)$(OutputFile) @$(ObjectsFileList) $(ArLibs)
-	@$(MakeDirCommand) "/home/matjaz/Todo/BogdanFilipic/EkgSim/.build-debug"
-	@echo rebuilt > "/home/matjaz/Todo/BogdanFilipic/EkgSim/.build-debug/simlib"
+	@$(MakeDirCommand) "/home/matjaz/Todo/BogdanFilipic/EkgSim/.build-release"
+	@echo rebuilt > "/home/matjaz/Todo/BogdanFilipic/EkgSim/.build-release/simlib"
 
 MakeIntermediateDirs:
-	@test -d ./Debug || $(MakeDirCommand) ./Debug
+	@test -d ./Release || $(MakeDirCommand) ./Release
 
 
-./Debug:
-	@test -d ./Debug || $(MakeDirCommand) ./Debug
+./Release:
+	@test -d ./Release || $(MakeDirCommand) ./Release
 
 PreBuild:
 
@@ -115,6 +115,6 @@ $(IntermediateDirectory)/lib_main.cpp$(PreprocessSuffix): lib_main.cpp
 ## Clean
 ##
 clean:
-	$(RM) -r ./Debug/
+	$(RM) -r ./Release/
 
 

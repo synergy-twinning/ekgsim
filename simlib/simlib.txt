@@ -1,1 +1,1 @@
-./Debug/simulator.cpp.o ./Debug/lib_main.cpp.o
+./Release/simulator.cpp.o ./Release/lib_main.cpp.o

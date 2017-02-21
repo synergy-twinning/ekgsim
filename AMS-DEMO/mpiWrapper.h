@@ -116,7 +116,7 @@ namespace Mpi {
         
         // for debugging only
         int toInt() const {
-            return (int)comm;
+            return (intptr_t)comm;
         }
 	};
 	

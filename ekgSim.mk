@@ -5,15 +5,15 @@
 ## Release
 ProjectName            :=ekgSim
 ConfigurationName      :=Release
-WorkspacePath          :=/home/matjaz/Todo/BogdanFilipic/EkgSim
-ProjectPath            :=/home/matjaz/Todo/BogdanFilipic/EkgSim
+WorkspacePath          :=.
+ProjectPath            :=.
 IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Matjaž
-Date                   :=13/02/17
+Date                   :=21/02/17
 CodeLitePath           :=/home/matjaz/.codelite
 LinkerName             :=/usr/bin/mpic++
 SharedObjectLinkerName :=/usr/bin/mpic++ -shared -fPIC
@@ -50,7 +50,7 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)copyOfLibs $
 AR       := /usr/bin/ar rcu
 CXX      := /usr/bin/mpic++
 CC       := /usr/bin/mpicc
-CXXFLAGS :=  -O2 -Wall $(Preprocessors)
+CXXFLAGS :=  -O2 -std=c++11 -Wall $(Preprocessors)
 CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := /usr/bin/as

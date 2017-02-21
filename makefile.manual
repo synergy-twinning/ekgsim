@@ -1,0 +1,13 @@
+.PHONY: clean All
+
+All:
+	@echo "----------Building project:[ simlib - Release ]----------"
+	@cd "simlib" && "$(MAKE)" -f  "simlib.mk" && cd ..
+	@echo "----------Building project:[ ekgSim - Release ]----------"
+	@"$(MAKE)" -f  "ekgSim.mk"
+clean:
+	@echo "----------Cleaning project:[ simlib - Release ]----------"
+	@cd "simlib" && "$(MAKE)" -f  "simlib.mk" clean && cd ..
+	@echo "----------Cleaning project:[ ekgSim - Release ]----------"
+	@"$(MAKE)" -f  "ekgSim.mk" clean
+
