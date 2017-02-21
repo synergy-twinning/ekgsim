@@ -94,7 +94,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/simulator.cpp$(ObjectSuffix): simulator.cpp $(IntermediateDirectory)/simulator.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Todo/BogdanFilipic/EkgSim/simlib/simulator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/simulator.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "$(ProjectPath)/simulator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/simulator.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/simulator.cpp$(DependSuffix): simulator.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/simulator.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/simulator.cpp$(DependSuffix) -MM simulator.cpp
 
@@ -102,7 +102,7 @@ $(IntermediateDirectory)/simulator.cpp$(PreprocessSuffix): simulator.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/simulator.cpp$(PreprocessSuffix)simulator.cpp
 
 $(IntermediateDirectory)/lib_main.cpp$(ObjectSuffix): lib_main.cpp $(IntermediateDirectory)/lib_main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Todo/BogdanFilipic/EkgSim/simlib/lib_main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/lib_main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "$(ProjectPath)/lib_main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/lib_main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/lib_main.cpp$(DependSuffix): lib_main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/lib_main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/lib_main.cpp$(DependSuffix) -MM lib_main.cpp
 
