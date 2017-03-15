@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 Please cite the following works (bibtex source below):
-    - DepolliAvbeljTrobec2008 for the simulator and imulation-based ptimization
+    - DepolliAvbeljTrobec2008 for the simulator and simulation-based optimization
     - DepolliTrobecFilipic2013 for the AMS-DEMO optimizer
     - TrobecDepolliAvbelj2009 for the simulator
 
