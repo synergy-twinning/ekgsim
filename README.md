@@ -16,9 +16,9 @@ An example of how the environment should be prepared on a new Ubuntu installatio
 ~~~
 apt-get update
 apt-get install make build-essential libopenmpi-dev unzip openmpi-bin ssh
-wget https://bitbucket.org/matjazdepolli/ekgsim/get/7cea85cebd66.zip -O ekgsim.zip
+wget https://github.com/synergy-twinning/ekgsim/archive/master.zip -O ekgsim.zip
 unzip ekgsim.zip
-cd matjazdepolli-ekgsim-7cea85cebd66
+cd _unzipped_dir_
 ~~~
 
 Make will create an executable in directory Release. This is an MPI-enabled parallel program but can be run sequentially if needed.
