@@ -38,7 +38,8 @@ Also set up the linked files (filenames are specified in simulator.ini).
 
 ~~~~
 # parameters is a vector of numeric parameters (of the correct length, which is set in simulator.ini), separated by commas (no spaces!)
-Release/ekgSim test -sim parameters -out result
+cd testRun
+./ekgSim test -sim parameters -out result
 # the result of the simulation will be stored in result.column, which is in Matlab/octave readable text format
 # result.column will contain _n+1_ columns, first is the time in milliseconds, followed by the _n_ simulated ECGs for all the measuring points
 ~~~~
@@ -56,7 +57,8 @@ All done
 
 ~~~~
 # execute the simulator without extra parameters
-Release/ekgSim
+cd testRun
+./ekgSim
 ~~~~
 
 Several files will be created as a result: 
@@ -70,7 +72,8 @@ Parallel execution is supported on MPI enabled systems. Parallelization is done 
 
 ~~~~
 # execute the simulator through MPI call on 16 processors:
-mpirun -n 16 Release/ekgSim
+cd testRun
+mpirun -n 16 ekgSim
 ~~~~
 
 # Citation
