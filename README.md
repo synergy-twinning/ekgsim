@@ -38,6 +38,7 @@ Also set up the linked files (filenames are specified in simulator.ini).
 
 ~~~~
 # parameters is a vector of numeric parameters (of the correct length, which is set in simulator.ini), separated by commas (no spaces!)
+cp Release/ekgSim testRun/
 cd testRun
 ./ekgSim test -sim parameters -out result
 # the result of the simulation will be stored in result.column, which is in Matlab/octave readable text format
@@ -57,6 +58,7 @@ All done
 
 ~~~~
 # execute the simulator without extra parameters
+cp Release/ekgSim testRun/
 cd testRun
 ./ekgSim
 ~~~~
@@ -72,6 +74,7 @@ Parallel execution is supported on MPI enabled systems. Parallelization is done 
 
 ~~~~
 # execute the simulator through MPI call on 16 processors:
+cp Release/ekgSim testRun/
 cd testRun
 mpirun -n 16 ekgSim
 ~~~~
