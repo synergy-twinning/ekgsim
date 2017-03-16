@@ -77,8 +77,8 @@ $(OutputFile): $(Objects)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(AR) $(ArchiveOutputSwitch)$(OutputFile) @$(ObjectsFileList) $(ArLibs)
-	@$(MakeDirCommand) "/home/matjaz/Todo/BogdanFilipic/EkgSim/.build-release"
-	@echo rebuilt > "/home/matjaz/Todo/BogdanFilipic/EkgSim/.build-release/simlib"
+	@$(MakeDirCommand) "$(ProjectPath)/.build-release"
+	@echo rebuilt > "$(ProjectPath)/.build-release/simlib"
 
 MakeIntermediateDirs:
 	@test -d ./Release || $(MakeDirCommand) ./Release
