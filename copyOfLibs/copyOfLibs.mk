@@ -1,5 +1,5 @@
-LinkerName             :=/usr/bin/mpic++
-SharedObjectLinkerName :=/usr/bin/mpiAR       := /usr/bin/ar rcu
+LinkerName             :=mpic++
+SharedObjectLinkerName :=mpiAR       := ar rcu
 IntermediateDirectory  :=./Release
 Preprocessors          :=-DNDEBUG 
 LinkOptions            :=
@@ -8,13 +8,13 @@ MakeDirCommand         :=mkdir -p
 ObjectsFileList        :="copyOfLibs.txt"
 IncludePath            := -I. 
 
-AR       := /usr/bin/ar rcu
-CXX      := /usr/bin/g++
-CC       := /usr/bin/gcc
+AR       := ar rcu
+CXX      := g++
+CC       := gcc
 CXXFLAGS :=  -O2 -std=c++11 -Wall $(Preprocessors)
 CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := /usr/bin/asc++ -shared -fPIC
+AS       := asc++ -shared -fPIC
 
 
 
