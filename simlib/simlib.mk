@@ -15,8 +15,8 @@ CurrentFileFullPath    :=
 User                   :=Matjaž
 Date                   :=21/02/17
 CodeLitePath           :=/home/matjaz/.codelite
-LinkerName             :=/usr/bin/g++
-SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
+LinkerName             :=g++
+SharedObjectLinkerName :=g++ -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -47,13 +47,13 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)copyOfLibs
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := /usr/bin/ar rcu
-CXX      := /usr/bin/g++
-CC       := /usr/bin/gcc
+AR       := ar rcu
+CXX      := g++
+CC       := gcc
 CXXFLAGS :=  -std=c++11 $(Preprocessors)
 CFLAGS   :=   $(Preprocessors)
 ASFLAGS  := 
-AS       := /usr/bin/as
+AS       := as
 
 
 ##
@@ -77,8 +77,8 @@ $(OutputFile): $(Objects)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(AR) $(ArchiveOutputSwitch)$(OutputFile) @$(ObjectsFileList) $(ArLibs)
-	@$(MakeDirCommand) "/home/matjaz/Todo/BogdanFilipic/EkgSim/.build-release"
-	@echo rebuilt > "/home/matjaz/Todo/BogdanFilipic/EkgSim/.build-release/simlib"
+	@$(MakeDirCommand) "$(ProjectPath)/.build-release"
+	@echo rebuilt > "$(ProjectPath)/.build-release/simlib"
 
 MakeIntermediateDirs:
 	@test -d ./Release || $(MakeDirCommand) ./Release

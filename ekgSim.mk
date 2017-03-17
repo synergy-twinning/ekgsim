@@ -15,8 +15,8 @@ CurrentFileFullPath    :=
 User                   :=Matjaž
 Date                   :=21/02/17
 CodeLitePath           :=/home/matjaz/.codelite
-LinkerName             :=/usr/bin/mpic++
-SharedObjectLinkerName :=/usr/bin/mpic++ -shared -fPIC
+LinkerName             :=mpic++
+SharedObjectLinkerName :=mpic++ -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -47,13 +47,13 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)copyOfLibs $
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := /usr/bin/ar rcu
-CXX      := /usr/bin/mpic++
-CC       := /usr/bin/mpicc
+AR       := ar rcu
+CXX      := mpic++
+CC       := mpicc
 CXXFLAGS :=  -O2 -std=c++11 -Wall $(Preprocessors)
 CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := /usr/bin/as
+AS       := as
 
 
 ##
