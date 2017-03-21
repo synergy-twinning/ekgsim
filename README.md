@@ -35,9 +35,20 @@ An example of how the environment should be prepared on a new Ubuntu installatio
 ~~~
 apt-get update
 apt-get install make build-essential libopenmpi-dev unzip openmpi-bin ssh
+~~~
+
+If you want to download the latest stable version (original simulator), we have created a tag, you can use to download the release:
+~~~
+wget https://github.com/synergy-twinning/ekgsim/archive/v0.1.0.zip -O ekgsim.zip
+unzip ekgsim.zip
+cd ekgsim-0.1.0/
+~~~
+
+If you want to download the latest version from the repository do this:
+~~~
 wget https://github.com/synergy-twinning/ekgsim/archive/master.zip -O ekgsim.zip
 unzip ekgsim.zip
-cd ekgsim-master
+cd ekgsim-master/
 ~~~
 
 Make will create an executable in directory Release. This is an MPI-enabled parallel program but can be run sequentially if needed.
