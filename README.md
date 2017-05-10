@@ -66,8 +66,10 @@ cd testRun
 
 ## Sequential execution
 The -sim parameter is a vector of numeric parameters of length 21, separated by commas (no spaces!). Parameters need to be in the following ranges:
+~~~
 min = 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200, 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200, 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200
 max = 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400, 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400, 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400
+~~~
 
 ~~~~
 cp Release/ekgSim testRun/
