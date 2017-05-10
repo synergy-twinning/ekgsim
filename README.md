@@ -63,23 +63,18 @@ The simulator requires an environment to be set up. An example of such environme
 cp Release/ekgSim testRun/
 cd testRun
 ~~~
-Before running the executable, adjust the parameters of simulator and optimization in *simulator.ini* file.
-Also set up the linked files (filenames are specified in simulator.ini).
 
 ## Sequential execution
+The -sim parameter is a vector of numeric parameters of length 21, separated by commas (no spaces!). Parameters need to be in the following ranges:
+min = 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200, 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200, 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200
+max = 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400, 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400, 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400
 
 ~~~~
-# parameters is a vector of numeric parameters (of the correct length, which is set in simulator.ini), separated by commas (no spaces!)
 cp Release/ekgSim testRun/
 cd testRun
-./ekgSim test -sim parameters -out result
-# the result of the simulation will be stored in result.column, which is in Matlab/octave readable text format
-# result.column will contain _n+1_ columns, first is the time in milliseconds, followed by the _n_ simulated ECGs for all the measuring points
-~~~~
-
-An example:
-~~~~
 ./ekgSim test -sim 2.25214,0.925452,0.0943991,0.00035813,0.0890636,0.0632915,226.183,2.08002,0.857738,0.162565,0.000369406,0.0965625,0.0523254,232.278,3.07406,0.855509,0.125351,0.000710767,0.0720323,0.0187579,200.93 -out result
+# the result of the simulation will be stored in result.column, which is in Matlab/octave readable text format
+# result.column will contain 3 columns, first is the time in milliseconds, followed by the 2 simulated ECGs for all the measuring points
 ~~~~
 
 Beside the output file *result*, some of the results are also output to the standard output, for example:
@@ -89,6 +84,8 @@ eval 1   simulation done in 439.131 seconds
  criteria = <0.099919,0.012262>, violation = 0
 All done
 ~~~~
+
+In order to use the simulator for the optimization, you will need to parse the standard output for the criteria.
 
 # Running the optimization
 ## Sequential mode
