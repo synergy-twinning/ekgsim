@@ -71,13 +71,13 @@ min = 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200, 1.5, 0.85, 0.05, 0.0003, 0.01, 
 max = 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400, 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400, 3.5, 0.95, 0.2,  0.0010, 0.10,  0.10, 400
 ~~~
 
+Here is one example on how to call the simulator sequentially.
+
 ~~~~
-cp Release/ekgSim testRun/
-cd testRun
 ./ekgSim test -sim 2.25214,0.925452,0.0943991,0.00035813,0.0890636,0.0632915,226.183,2.08002,0.857738,0.162565,0.000369406,0.0965625,0.0523254,232.278,3.07406,0.855509,0.125351,0.000710767,0.0720323,0.0187579,200.93 -out result
-# the result of the simulation will be stored in result.column, which is in Matlab/octave readable text format
-# result.column will contain 3 columns, first is the time in milliseconds, followed by the 2 simulated ECGs for all the measuring points
 ~~~~
+The result of the simulation in form of a simulated ECG signal will be stored in _result.column_ file, which is in Matlab/octave readable text format.
+File _result.column_ will contain 3 columns, first is the time in milliseconds, followed by the 2 simulated ECGs for all the measuring points.
 
 Beside the output file *result*, some of the results are also output to the standard output, for example:
 ~~~~
