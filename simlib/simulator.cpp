@@ -431,8 +431,9 @@ namespace SimLib {
 			<< s.simulationLength << "\n" << "total steps = "
 			<< s.simulationLength / s.simulationTimeStep << "\n";
 	}
-
-	// new implementation, the longest loop is now innermost; much improved execution speed
+    
+    
+	// new implementation, the longest loop is now really innermost, even the <x,y,z> triplets are now done separately to enable auto-vectorization
 	void Simulation::run(double startT, double totalTime) {
 		setApIndices();
 
@@ -455,9 +456,13 @@ namespace SimLib {
 		// run simulation only on the inside of the bordered shape, so that neighbourhood will always
 		// be valid
 		Region<NeighbourStruct::RelativeVec> rgn(sizeVector1, sizeVector1 + shape.size());
-		typedef Pattern::Vector<double, 3> Vec3;
-		std::vector<Vec3> dipole(totalSteps);
-		std::vector<double> cellApValue(dipole.size());
+        
+        // make 3 vectors (one for x,y,z) instead of single vector of triplets for better automatic vectorization on Intel compiler
+        std::vector<double> dipole_x(totalSteps);
+        std::vector<double> dipole_y(totalSteps);
+        std::vector<double> dipole_z(totalSteps);
+        
+		std::vector<double> cellApValue(dipole_x.size());
 		std::vector<std::vector<double> > measurementVectors(mps.size());
 		for (size_t i = 0; i < measurementVectors.size(); ++i)
 			measurementVectors[i].resize(totalSteps, 0.0);
@@ -487,8 +492,9 @@ namespace SimLib {
 				// calculate vector D (dipole vector of cell)
 
 				// start by defining a 3D vector, set to (0, 0, 0)
-				Vec3 D(Pattern::Vector<double, 3>::ConstInit(0));
-				std::fill(dipole.begin(), dipole.end(), D);
+                std::fill(dipole_x.begin(), dipole_x.end(), 0);
+                std::fill(dipole_y.begin(), dipole_y.end(), 0);
+                std::fill(dipole_z.begin(), dipole_z.end(), 0);
 
 				// loop through cell neighbours
 				//FOREACH(const NeighbourStruct& ns, nhood.neighboursVector()) {
@@ -502,7 +508,9 @@ namespace SimLib {
 						size_t next = 0;
 						for (double simTime = startTime; simTime < totalTime; simTime += timeStep) {
 							double valueDif = valueOfAP(simTime, borderedShape[index2]) - cellApValue[next];
-							dipole[next] += (ns.dif * valueDif);
+                            dipole_x[next] += ns.dif[0] * valueDif;
+                            dipole_y[next] += ns.dif[1] * valueDif;
+                            dipole_z[next] += ns.dif[2] * valueDif;
 							++next;
 						}
 					}
@@ -515,8 +523,10 @@ namespace SimLib {
 					Pattern::Vector<double, 3> mPos = mps[i].getPosition() -
 						(Pattern::Vector<double, 3>)index;
 					mPos *= 1.0 / pow3Length(mPos);
-					for (size_t t = 0; t < dipole.size(); ++t) {
-						measurementVectors[i][t] += mPos * dipole[t];
+					for (size_t t = 0; t < dipole_x.size(); ++t) {
+                        // measurementVectors[i][t] += mPos * dipole[t];  // vector * vector results in scalar product
+                        // hand implemented scalar product:
+						measurementVectors[i][t] += mPos[0] * dipole_x[t] + mPos[1] * dipole_y[t] + mPos[2] * dipole_z[t];
 					}
 				}
 			}
@@ -527,7 +537,7 @@ namespace SimLib {
 
 		// push measuring point values
 		for (size_t i = 0; i < mps.size(); ++i) {
-			for (size_t t = 0; t < dipole.size(); ++t) {
+			for (size_t t = 0; t < dipole_x.size(); ++t) {
 				mps[i] << measurementVectors[i][t];
 			}
 		}
