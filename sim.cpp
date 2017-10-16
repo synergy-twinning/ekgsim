@@ -574,11 +574,11 @@ protected:
 				
 				// compare sim measurement to predefined shape
 				switch (settings.comparisonMode) {
-					case SimSettings::mode_vector_correlation:
+					case SimSettings::mode_correlation:
 						cr = statisticalCorrelationCoeff(simResult, targets[i], 0);
 						cr.bestValue = 1.0 - cr.bestValue;
 						break;
-					case SimSettings::mode_correlation:
+					case SimSettings::mode_vector_correlation:
 						cr = vectorCorrelationCoeff(simResult, targets[i], 0);
 						cr.bestValue = 1.0 - cr.bestValue;
 						break;
@@ -651,11 +651,11 @@ protected:
 		if (settings.fastApproxIsCriterion || (settings.fastApproxLimit < 2)) {
 			ConvolutionResult<double> cr;
 			switch (settings.comparisonMode) {
-				case SimSettings::mode_vector_correlation:
+				case SimSettings::mode_correlation:
 					cr = statisticalCorrelationCoeff(approximateECG, targets[0], 0);
 					cr.bestValue = 1.0 - cr.bestValue;
 					break;
-				case SimSettings::mode_correlation:
+				case SimSettings::mode_vector_correlation:
 					cr = vectorCorrelationCoeff(approximateECG, targets[0], 0);
 					cr.bestValue = 1.0 - cr.bestValue;
 					break;
