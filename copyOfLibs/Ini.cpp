@@ -206,9 +206,9 @@ namespace Ini {
     /// ***********************************************************************************************
 	/// class File
 	/// 
-	File::File(const char* filename)
-            : separators_(" \t"),
-            filename_(filename),
+	File::File(const char* filename) :
+			filename_(filename),
+			separators_(" \t"),
             state_(fileState_error) {
         std::ifstream              file;
         file.open(filename);
@@ -355,7 +355,7 @@ namespace Ini {
 
 
     void File::parse(const std::string& input, std::string& name, std::string& val) const {
-        int                        lastChar = 0, firstChar = 0;
+        unsigned int               lastChar = 0, firstChar = 0;
         bool                       foundName = false;
         for (unsigned int i=0; i<input.length(); ++i) {
             if ((input[i] == '=') && (!foundName)) {
