@@ -1094,6 +1094,10 @@ void OptimizationFunction::operator() (const Input& solution, Value& result, dou
 
 void OptimizationFunction::getGeneParams(size_t& numGenes, size_t& numCriteria, std::vector<double>& gMin, std::vector<double>& gMax) {
 	impl->getGeneParams(numGenes, numCriteria, gMin, gMax);
+	geneMin.resize(gMin.size());
+	geneMax.resize(gMax.size());
+	std::copy(gMin.begin(), gMin.end(), geneMin.begin());
+	std::copy(gMax.begin(), gMax.end(), geneMax.begin());
 }
 
 
@@ -1101,4 +1105,11 @@ void OptimizationFunction::getEvolutionaryParams(size_t& numGenerations, size_t&
 	numGenerations = impl->settings.numGenerations;
 	popSize = impl->settings.populationSize;
 	queueSize = impl->settings.queueSize;
+}
+
+void OptimizationFunction::normalize(Input& solution) const {
+	for (size_t i = 0; (i < geneMin.size()) && (i < solution.size()); ++i)
+		if (solution[i] < geneMin[i]) solution[i] = geneMin[i];
+	for (size_t i = 0; (i < geneMax.size()) && (i < solution.size()); ++i)
+		if (solution[i] > geneMax[i]) solution[i] = geneMax[i];
 }

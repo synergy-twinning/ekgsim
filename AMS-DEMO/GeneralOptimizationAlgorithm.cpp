@@ -218,7 +218,7 @@ bool GeneralOptimizationAlgorithm::loadSettings(const char* fname) {
 }
 
 
-bool GeneralOptimizationAlgorithm::updateSettings() {
+bool GeneralOptimizationAlgorithm::updateSettings() {			
 	if (settings.evaluation.criteriaVectorLength == 1)
 		eval = &soAlg.evaluation();
 	else

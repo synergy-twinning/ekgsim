@@ -94,25 +94,14 @@ class SimImplementation;
 /*******************************************************************************************//**
     implementation of VirtualOptimizationFunction
 **/
-struct OptimizationFunction : public VirtualOptimizationFunction {
-	// not yet used:
-	struct Normalization {
-		std::vector<double> geneMin;
-		std::vector<double> geneMax;
-		
-		void normalize(Input& in) const {
-			for (size_t i = 0; (i < geneMin.size()) && (i < in.size()); ++i)
-				if (in[i] < geneMin[i]) in[i] = geneMin[i];
-			for (size_t i = 0; (i < geneMax.size()) && (i < in.size()); ++i)
-				if (in[i] > geneMax[i]) in[i] = geneMax[i];
-		}
-	};
-	
+struct OptimizationFunction : public VirtualOptimizationFunction {	
 //	typedef std::vector<double> Value;
 //	typedef std::vector<double> Input;
 	SimImplementation* impl;
 	size_t valueLen;
 	size_t propertiesLen;
+	std::vector<double> geneMin;
+	std::vector<double> geneMax;
 
 public:
     /// OptimizationFunction takes single parameter at initialization - the number of properties
@@ -129,6 +118,8 @@ public:
 	void getGeneParams(size_t& numGenes, size_t& numCriteria, std::vector<double>& gMin, std::vector<double>& gMax);
 	/// query for parameters that define optimization and are located in implementation (number of generations, size of the population, length of queue)	
 	void getEvolutionaryParams(size_t& numGenerations, size_t& popSize, int& queueSize);
+	/// normalization of parameters
+	void normalize(Input& solution) const;
 };
 
 

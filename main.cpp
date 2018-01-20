@@ -80,6 +80,8 @@
 #include "vectorMath.h"
 #include "nonlinearFit.h"
 #include "columnFile.h"
+
+// these are includes instead of being compiled separately for some legacy reasons
 #include <AMS-DEMO/GeneralOptimizationAlgorithm.cpp>
 #include <AMS-DEMO/utilities.cpp>
 
