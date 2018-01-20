@@ -5,8 +5,8 @@
 ## Release
 ProjectName            :=simlib
 ConfigurationName      :=Release
-WorkspacePath          :=/home/matjaz/Delo/EkgSim/ekgsim
-ProjectPath            :=/home/matjaz/Delo/EkgSim/ekgsim/simlib
+WorkspacePath          :=.
+ProjectPath            :=.
 IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -77,8 +77,8 @@ $(OutputFile): $(Objects)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(AR) $(ArchiveOutputSwitch)$(OutputFile) @$(ObjectsFileList) $(ArLibs)
-	@$(MakeDirCommand) "/home/matjaz/Delo/EkgSim/ekgsim/.build-release"
-	@echo rebuilt > "/home/matjaz/Delo/EkgSim/ekgsim/.build-release/simlib"
+	@$(MakeDirCommand) ".build-release"
+	@echo rebuilt > ".build-release/simlib"
 
 MakeIntermediateDirs:
 	@test -d ./Release || $(MakeDirCommand) ./Release
@@ -94,7 +94,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/lib_main.cpp$(ObjectSuffix): lib_main.cpp $(IntermediateDirectory)/lib_main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Delo/EkgSim/ekgsim/simlib/lib_main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/lib_main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "lib_main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/lib_main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/lib_main.cpp$(DependSuffix): lib_main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/lib_main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/lib_main.cpp$(DependSuffix) -MM lib_main.cpp
 
@@ -102,7 +102,7 @@ $(IntermediateDirectory)/lib_main.cpp$(PreprocessSuffix): lib_main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/lib_main.cpp$(PreprocessSuffix) lib_main.cpp
 
 $(IntermediateDirectory)/simulator.cpp$(ObjectSuffix): simulator.cpp $(IntermediateDirectory)/simulator.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Delo/EkgSim/ekgsim/simlib/simulator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/simulator.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "simulator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/simulator.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/simulator.cpp$(DependSuffix): simulator.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/simulator.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/simulator.cpp$(DependSuffix) -MM simulator.cpp
 

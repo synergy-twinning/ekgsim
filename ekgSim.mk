@@ -5,8 +5,8 @@
 ## Release
 ProjectName            :=ekgSim
 ConfigurationName      :=Release
-WorkspacePath          :=/home/matjaz/Delo/EkgSim/ekgsim
-ProjectPath            :=/home/matjaz/Delo/EkgSim/ekgsim
+WorkspacePath          :=.
+ProjectPath            :=.
 IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -92,7 +92,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/copyOfLibs_Ini.cpp$(ObjectSuffix): copyOfLibs/Ini.cpp $(IntermediateDirectory)/copyOfLibs_Ini.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Delo/EkgSim/ekgsim/copyOfLibs/Ini.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/copyOfLibs_Ini.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "copyOfLibs/Ini.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/copyOfLibs_Ini.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/copyOfLibs_Ini.cpp$(DependSuffix): copyOfLibs/Ini.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/copyOfLibs_Ini.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/copyOfLibs_Ini.cpp$(DependSuffix) -MM copyOfLibs/Ini.cpp
 
@@ -100,7 +100,7 @@ $(IntermediateDirectory)/copyOfLibs_Ini.cpp$(PreprocessSuffix): copyOfLibs/Ini.c
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/copyOfLibs_Ini.cpp$(PreprocessSuffix) copyOfLibs/Ini.cpp
 
 $(IntermediateDirectory)/copyOfLibs_Random.cpp$(ObjectSuffix): copyOfLibs/Random.cpp $(IntermediateDirectory)/copyOfLibs_Random.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Delo/EkgSim/ekgsim/copyOfLibs/Random.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/copyOfLibs_Random.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "copyOfLibs/Random.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/copyOfLibs_Random.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/copyOfLibs_Random.cpp$(DependSuffix): copyOfLibs/Random.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/copyOfLibs_Random.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/copyOfLibs_Random.cpp$(DependSuffix) -MM copyOfLibs/Random.cpp
 
@@ -108,7 +108,7 @@ $(IntermediateDirectory)/copyOfLibs_Random.cpp$(PreprocessSuffix): copyOfLibs/Ra
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/copyOfLibs_Random.cpp$(PreprocessSuffix) copyOfLibs/Random.cpp
 
 $(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(ObjectSuffix): copyOfLibs/Arguments.cpp $(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Delo/EkgSim/ekgsim/copyOfLibs/Arguments.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "copyOfLibs/Arguments.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(DependSuffix): copyOfLibs/Arguments.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(DependSuffix) -MM copyOfLibs/Arguments.cpp
 
@@ -116,7 +116,7 @@ $(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(PreprocessSuffix): copyOfLibs
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/copyOfLibs_Arguments.cpp$(PreprocessSuffix) copyOfLibs/Arguments.cpp
 
 $(IntermediateDirectory)/sim.cpp$(ObjectSuffix): sim.cpp $(IntermediateDirectory)/sim.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Delo/EkgSim/ekgsim/sim.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/sim.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "sim.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/sim.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/sim.cpp$(DependSuffix): sim.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/sim.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/sim.cpp$(DependSuffix) -MM sim.cpp
 
@@ -124,7 +124,7 @@ $(IntermediateDirectory)/sim.cpp$(PreprocessSuffix): sim.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/sim.cpp$(PreprocessSuffix) sim.cpp
 
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/matjaz/Delo/EkgSim/ekgsim/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
