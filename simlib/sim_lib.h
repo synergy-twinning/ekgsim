@@ -174,15 +174,22 @@ namespace SimLib {
 			measuringPositions.resize(originalMeasuringPositions.size());
 			vectorU.resize(originalMeasuringPositions.size());
 			vectorV.resize(originalMeasuringPositions.size());
+			// note that since measuring points are provided as (z,y,x), the code below also uses such coordinate order
 			PositionVec x;
-			x[0] = 1; x[1] = 0; x[2] = 0;
+			x[0] = 0; x[1] = 0; x[2] = 1;
 			for (size_t i = 0; i < originalMeasuringPositions.size(); ++i) {
 				PositionVec &p = originalMeasuringPositions[i];
 				measuringPositions[i] = p;
 				vectorU[i] = cross(x, p);
 				vectorV[i] = cross(vectorU[i], p);
+				// since the coordinates are in reverse order, vector product is negative
+				vectorU[i] *= -1;
+				// but vector v is already ok, since it was made from negative vector u ...
 				normalize(vectorU[i]);
 				normalize(vectorV[i]);
+				
+				std::cout << " u" << i << " = " << vectorU[i][2] << "," << vectorU[i][1] << "," << vectorU[i][0] << "\n";
+				std::cout << " v" << i << " = " << vectorV[i][2] << "," << vectorV[i][1] << "," << vectorV[i][0] << "\n";
 			}
 		}
 		

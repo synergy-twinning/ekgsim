@@ -373,6 +373,7 @@ namespace SimLib {
 
 		while (!inFile.eof()) {
 			Pattern::Vector<double, 3>		point;
+			// warning, measuring point coordinates should be stored in vector as z,y,x, instead of x,y,z
 			inFile >> point[2];
 			inFile.ignore(1000,',');
 			inFile >> point[1];
@@ -386,20 +387,23 @@ namespace SimLib {
 			}
 		}
 
+		// output the measuring points (in the usual order of coordinates: x,y,z
 		for (size_t i = 0; i < mps.size(); ++i)
-			cerr << " -> " << mps[i].getPosition()[0] << ", " << mps[i].getPosition()[1] << ", " << mps[i].getPosition()[2] << "\n";
+			cerr << " -> " << mps[i].getPosition()[2] << ", " << mps[i].getPosition()[1] << ", " << mps[i].getPosition()[0] << "\n";
 
 		if (mps.size() == 0) {
 			throw std::runtime_error(string("failed to open file containing measuring points: ") + filename);
         }
 	}
 	
+	/// set the vector of measuring points; warning measuring point coordinates should be provided z,x,y inside the vector!
 	void Simulation::setMeasuringPoints(const std::vector<PositionVec>& points) {
 		mps.resize(points.size());
 		for (size_t i = 0; i < mps.size(); ++i)
 			mps[i].setPosition(points[i]);
 	}
 	
+	/// get the vector of measuring points; warning measuring point coordinates are stored as z,x,y inside the vector!
 	void Simulation::getMeasuringPoints(std::vector<PositionVec>& points) {
 		points.resize(mps.size());
 		for (size_t i = 0; i < mps.size(); ++i)
