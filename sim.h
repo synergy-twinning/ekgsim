@@ -115,14 +115,14 @@ struct OptimizationFunction : public VirtualOptimizationFunction {
 	size_t propertiesLen;
 
 public:
-    /// PptimizationFunction takes single parameter at initialization - the number of properties
+    /// OptimizationFunction takes single parameter at initialization - the number of properties
 	OptimizationFunction(size_t propertiesL);
 	~OptimizationFunction();
 	
 	/// setup only sets the outputs
 	void setup(const OutputSettings& outSet);
 	/// operator() runs the optimization function on the given input (solution).
-	/// Results are saved in to result, violation, and properties; function does not return anything
+	/// Results are saved to parameters result, violation, and properties; function does not return anything
 	/// if result and properties are vectors, they are automatically resized to correct length
 	void operator() (const Input& solution, Value& result, double& violation, Properties& properties) const;
 	/// query for parameters that define individual solutions and are located in implementation (number of genes, number of criteria, min and max for genes)	

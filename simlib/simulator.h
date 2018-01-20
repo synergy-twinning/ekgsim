@@ -438,6 +438,10 @@ namespace SimLib {
 			position[2] = x;
 		}
 		
+		void setPosition(const Pattern::Vector<double, 3>& pos) {
+			position = pos;
+		}
+		
 		const Pattern::Vector<double, 3>& getPosition() const {
 			return position;
 		}
@@ -502,18 +506,21 @@ namespace SimLib {
 	/// holding all the data one needs to run the simulation
 	/// 
 	class Simulation {
+	public:
 	    /// RelativeVec is a vector of relative position (such as the position of one cell relative to another cell)
+		typedef Pattern::Vector<double, 3> PositionVec;
 		typedef Pattern::Vector<int, 3> RelativeVec;
 		typedef ActionPotential AP;
 		typedef MeasuringPoint MP;
 		
+	private:
 		ShapeMatrix						shape;
 		ExcitationTransferMatrix		transferMatrix;
 		Neighbourhood					nhood;
 		Neighbourhood 					excitaionNhood;
 		Region<RelativeVec>				simSpace;
 		std::vector<AP>					aps;
-		std::vector<MP>					mps;
+		std::vector<MP>					mps;				// measuring points used in ecg simulation
 		size_t 							targetNumOfAps;
 		double							timeStep;
 		double							timeStepInverse;
@@ -545,6 +552,10 @@ namespace SimLib {
 		void loadExcitationSequence(const string& input, const string& output);
 		/// load file containing positions of measuring points
 		void loadMeasuringPoints(const string& filename);
+		/// set measuring points using a vector; note that if measurement was already simulated this action will destroy it
+		void setMeasuringPoints(const std::vector<PositionVec>& points);
+		/// get measuring point positions
+		void getMeasuringPoints(std::vector<PositionVec>& points);
 		/// save ECGs to file
 		void saveMeasurements(const std::string& filename, const std::string& comment = "");
 		/// output some settings for visual assertion

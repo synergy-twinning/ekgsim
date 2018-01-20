@@ -101,6 +101,14 @@ struct SimSettings {
 	/// vector of indices of ks that are to be optimized (other ks are fixed)
 	std::vector<int> freeKs;
 	
+	//****************************************************************************
+	// added later, TODO: integrate it better
+	
+	/// should optimizer try to move measuring points too
+	bool measuringPointsDisplacementIsInput;
+	std::vector<int> displacementMin, displacementMax;
+	//****************************************************************************
+	
 	/// filename of the measured ECGs that are used as targets for the optimization
 	std::string optimizationTargetsFname;
 	/// comparison mode between simulated and measured ECG 
@@ -203,7 +211,7 @@ public:
 				outputVector(std::cerr, kMax);
 				std::cerr << "\n";
 			}
-			
+		
 			/// interpolation type as a string
 			/// valid strings are:
 			/// 	endo-epi
@@ -234,10 +242,32 @@ public:
 			
 			std::cerr << "\n";
 		}
+		{	
+			int mpSec = ini.getSectionNumber("measuring points");
+			
+			// measuring point displacement bounds
+			{
+				Ini::ArrayReader<int, std::vector<int> > reader(displacementMin);
+				if (!ini.loadVar(reader, "displacement min", mpSec)) 
+					throw std::runtime_error("could not read displacement min");
+				std::cerr << " displacement min = ";
+				outputVector(std::cerr, displacementMin);
+				std::cerr << "\n";
+			}
+			{
+				Ini::ArrayReader<int, std::vector<int> > reader(displacementMax);
+				if (!ini.loadVar(reader, "displacement max", mpSec)) 
+					throw std::runtime_error("could not read displacement max");
+				std::cerr << " displacement max = ";
+				outputVector(std::cerr, displacementMax);
+				std::cerr << "\n";
+			}
+		}
 		{
 			std::cerr << "***** loading optimization parameters **********************\n";
-			
 			int optSec = ini.getSectionNumber("optimization");
+			
+			// are measuring points optimized?
 			
 			ini.loadVar(optimizationTargetsFname, "targets filename", optSec);
 			std::cerr << " targets filename = " << optimizationTargetsFname << "\n";
@@ -271,6 +301,10 @@ public:
 					std::cerr << "enabling additional criteria - peak position for every base\n";
 				peakPositionIsCriterion = temp > 0;
 			}
+			
+			measuringPointsDisplacementIsInput = false;
+			ini.loadVar(measuringPointsDisplacementIsInput, "optimize measuring points", optSec);
+			std::cerr << " optimize measuring points = " << measuringPointsDisplacementIsInput << "\n";
 			
 			{
 				int temp = 0;

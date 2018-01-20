@@ -91,9 +91,18 @@ namespace SimLib {
     ///         ekgSim.saveMeasurementAs(filename, comment);    % get and store measurements - results of the simulation
 	/// 
 	class EkgSim {
+	public:
+		typedef Simulation::PositionVec PositionVec;
+	private:
 //		StreamRedirector redirect;
 		Settings settings;
 		Simulation sim;
+		// measuring positions as loaded from file
+		std::vector<PositionVec> originalMeasuringPositions;
+		// measuring positions as given to the optimizer
+		std::vector<PositionVec> measuringPositions;
+		// u, v pairs for each measuring positions (vectors u and v define the plane of movement for measuring point)
+		std::vector<PositionVec> vectorU, vectorV;
 		
 	public:
 		EkgSim() /*: redirect(cerr)*/ {
@@ -159,6 +168,36 @@ namespace SimLib {
 			ScopeTimerForLogging tm(std::cerr, "loading measuring points                    ");
 			cerr << "measuring points: \n";
 			sim.loadMeasuringPoints(settings.inputPointsFilename);
+			// store local copy of measuring points and calculate their uvw space 
+			// uvw space is the space defined by a plane perpendicular to the position vector of an individual measuring point
+			sim.getMeasuringPoints(originalMeasuringPositions);
+			measuringPositions.resize(originalMeasuringPositions.size());
+			vectorU.resize(originalMeasuringPositions.size());
+			vectorV.resize(originalMeasuringPositions.size());
+			PositionVec x;
+			x[0] = 1; x[1] = 0; x[2] = 0;
+			for (size_t i = 0; i < originalMeasuringPositions.size(); ++i) {
+				PositionVec &p = originalMeasuringPositions[i];
+				measuringPositions[i] = p;
+				vectorU[i] = cross(x, p);
+				vectorV[i] = cross(vectorU[i], p);
+				normalize(vectorU[i]);
+				normalize(vectorV[i]);
+			}
+		}
+		
+		/// move the measuring points from original position by requested relative amount, in uvw space
+		void moveMeasuringPoints(const std::vector<PositionVec>& uvwDisplacement) {
+			if (uvwDisplacement.size() == measuringPositions.size()) {
+				for (size_t i = 0; i < originalMeasuringPositions.size(); ++i) {
+					// measuring position is displaced by u*vectorU +v*vectorV + w*w; w is always zero
+					measuringPositions[i] = originalMeasuringPositions[i] + uvwDisplacement[i][0] * vectorU[i] + uvwDisplacement[i][1] * vectorV[i]; 
+				}
+				sim.setMeasuringPoints(measuringPositions);
+			} else {
+				std::cerr << uvwDisplacement.size() << " != " << measuringPositions.size() << " " << originalMeasuringPositions.size() << std::endl;
+				throw std::runtime_error("invalid vector of measuring point displacements");
+			}
 		}
 		
 		/// load heart shape

@@ -331,8 +331,7 @@ void GeneralOptimizationAlgorithm::run() {
 			size_t d = Random::CRand().exclusiveInterval(randomInit.preLoaded.size());
 			if ((d+1) < randomInit.preLoaded.size()) 
 				randomInit.preLoaded[d] = randomInit.preLoaded.back();
-			
-
+		
 			randomInit.preLoaded.pop_back();
 		}
 		

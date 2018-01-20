@@ -393,6 +393,18 @@ namespace SimLib {
 			throw std::runtime_error(string("failed to open file containing measuring points: ") + filename);
         }
 	}
+	
+	void Simulation::setMeasuringPoints(const std::vector<PositionVec>& points) {
+		mps.resize(points.size());
+		for (size_t i = 0; i < mps.size(); ++i)
+			mps[i].setPosition(points[i]);
+	}
+	
+	void Simulation::getMeasuringPoints(std::vector<PositionVec>& points) {
+		points.resize(mps.size());
+		for (size_t i = 0; i < mps.size(); ++i)
+			points[i] = mps[i].getPosition();
+	}
 
 	void Simulation::saveMeasurements(const std::string& filename, const std::string& comment) {
 		std::vector<saveVecElement>		saveVec(mps.size());
