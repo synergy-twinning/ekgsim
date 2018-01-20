@@ -383,7 +383,7 @@ ConvolutionResult<T> devFromLinear(const std::vector<T>& a, const std::vector<T>
 	size_t len = std::min(a.size(), b.size() + res.bestOffset) - std::max(0, res.bestOffset);	
 	std::vector<double> d(len);
 	
-	double aMin, aMax;
+	double aMin = 0, aMax = 0;
 	minAndMax(aMin, aMax, a);
 	double aMult = 1.0 / (aMax - aMin);
 	double aOfs = bOfs; //1 - (aMin * aMult);

@@ -262,7 +262,7 @@ namespace Pattern {
 		
 		/// normalize the input vector (inplace)
 		inline friend void normalize(Vector& v) {
-			T l = sqrLength(v);
+			T l = std::sqrt(sqrLength(v));
 			if (l != 0)
 				v *= 1.0/l;
 			else 
@@ -277,7 +277,7 @@ namespace Pattern {
 				 
 			Vector ab;
 			ab[0] = a[1]*b[2] - a[2]*b[1];
-			ab[1] = a[0]*b[2] - a[2]*b[0];
+			ab[1] = a[2]*b[0] - a[0]*b[2];
 			ab[2] = a[0]*b[1] - a[1]*b[0];
 			return ab;
 		}
