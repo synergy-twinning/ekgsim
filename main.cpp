@@ -328,9 +328,13 @@ void runOptimization(int argc, char** argv) {
 
 	if (alg.updateSettings()) {
 #ifdef NO_MPI
-		std::cerr << "##### Running EkgSim v3 based optimization, "
+		std::cerr << "##### Running EkgSim v4 based optimization, "
 			<< (alg.settings.evaluation.criteriaVectorLength == 1 ? "DE ##" : "DEMO " )
 			<< "#################\n" << std::flush;
+		std::cerr << "#####  - v3 was used and published from 2008 and 2013\n"
+			<< "#####  - v4 was optimized for vectorization and added measuring point optimization in 2017/2018\n"
+			<< std::flush;
+
 
 		// run calls:
 		//	- population initialization
