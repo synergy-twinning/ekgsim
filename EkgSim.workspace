@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Workspace Name="EkgSim" Database="">
+<CodeLite_Workspace Name="EkgSim" Database="" Version="10.0.0">
   <Project Name="simlib" Path="simlib/simlib.project" Active="No"/>
   <Project Name="ekgSim" Path="ekgSim.project" Active="Yes"/>
   <Project Name="AMS-DEMO" Path="AMS-DEMO/AMS-DEMO.project" Active="No"/>
+  <Project Name="simlib" Path="simlib/simlib.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
       <Project Name="simlib" ConfigName="Debug"/>
       <Project Name="ekgSim" ConfigName="Debug"/>
       <Project Name="AMS-DEMO" ConfigName="Debug"/>
+      <Project Name="simlib" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="simlib" ConfigName="Release"/>
       <Project Name="ekgSim" ConfigName="Release"/>
       <Project Name="AMS-DEMO" ConfigName="Release"/>
+      <Project Name="simlib" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

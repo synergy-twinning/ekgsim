@@ -431,7 +431,7 @@ void ParallelNumericOptimizer<Algorithm, Chromosome, Evaluation>::evolution() {
 	{
 		ScopeTimer t(featureFile.totalTimer);
 		EvaluationJob job(*this);
-		
+			
 #ifndef NO_MPI
 		PFramework<Chromosome, Individual> fw(com);
 		fw.debugOutput = debugOutput;
@@ -472,7 +472,7 @@ void ParallelNumericOptimizer<Algorithm, Chromosome, Evaluation>::evolution() {
 	}
 	
 #ifndef NO_MPI
-    // this code is not requ ired for funcionallity of AMS-DEMO and is not timed (it could go under iotimer). 
+    // this code is not required for funcionallity of AMS-DEMO and is not timed (it could go under iotimer). 
     {
         std::ofstream seqFile;
         std::ostringstream seqName;

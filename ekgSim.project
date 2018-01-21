@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="ekgSim" InternalType="Console">
+<CodeLite_Project Name="ekgSim" InternalType="Console" Version="10.0.0">
+  <VirtualDirectory Name="copyOfLibs">
+    <VirtualDirectory Name="Pattern">
+      <File Name="copyOfLibs/Pattern/Hypermatrix.h"/>
+    </VirtualDirectory>
+    <File Name="copyOfLibs/Ini.cpp"/>
+    <File Name="copyOfLibs/Random.h"/>
+    <File Name="copyOfLibs/Ini.h"/>
+    <File Name="copyOfLibs/Random.cpp"/>
+    <File Name="copyOfLibs/Arguments.h"/>
+    <File Name="copyOfLibs/Arguments.cpp"/>
+  </VirtualDirectory>
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0007Release000000000000]]>
+    </Plugin>
+  </Plugins>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
-  </VirtualDirectory>
   <Dependencies Name="Release"/>
-  <VirtualDirectory Name="EkgSim">
-    <File Name="parametricAps.h"/>
-    <File Name="sim.h"/>
-    <File Name="SimSettings.h"/>
-    <File Name="nonlinearFit.h"/>
-    <File Name="vectorMath.h"/>
-    <File Name="sim.cpp"/>
-  </VirtualDirectory>
   <Dependencies Name="Debug">
     <Project Name="simlib"/>
   </Dependencies>
+  <VirtualDirectory Name="ekgsim">
+    <File Name="SimSettings.h"/>
+    <File Name="sim.cpp"/>
+    <File Name="parametricAps.h"/>
+    <File Name="vectorMath.h"/>
+    <File Name="sim.h"/>
+    <File Name="nonlinearFit.h"/>
+    <File Name="main.cpp"/>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -77,7 +91,7 @@
       </Completion>
     </Configuration>
     <Configuration Name="Release" CompilerType="mpi GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-O2;-std=c++11;-Wall" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-O2;-std=c++11;-Wall;-Wno-unused-but-set-variable -Wno-deprecated-declarations -Wno-unused-function" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="copyOfLibs"/>
         <IncludePath Value="simlib"/>

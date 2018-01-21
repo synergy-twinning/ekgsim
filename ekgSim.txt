@@ -1,1 +1,1 @@
-./Release/main.cpp.o ./Release/sim.cpp.o
+./Release/copyOfLibs_Ini.cpp.o ./Release/copyOfLibs_Random.cpp.o ./Release/copyOfLibs_Arguments.cpp.o ./Release/sim.cpp.o ./Release/main.cpp.o

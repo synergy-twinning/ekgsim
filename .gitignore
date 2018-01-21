@@ -5,3 +5,4 @@ Release
 EkgSimForSharing
 *.o
 *.a
+.build-release

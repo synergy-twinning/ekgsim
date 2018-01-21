@@ -218,7 +218,7 @@ bool GeneralOptimizationAlgorithm::loadSettings(const char* fname) {
 }
 
 
-bool GeneralOptimizationAlgorithm::updateSettings() {
+bool GeneralOptimizationAlgorithm::updateSettings() {			
 	if (settings.evaluation.criteriaVectorLength == 1)
 		eval = &soAlg.evaluation();
 	else
@@ -331,8 +331,7 @@ void GeneralOptimizationAlgorithm::run() {
 			size_t d = Random::CRand().exclusiveInterval(randomInit.preLoaded.size());
 			if ((d+1) < randomInit.preLoaded.size()) 
 				randomInit.preLoaded[d] = randomInit.preLoaded.back();
-			
-
+		
 			randomInit.preLoaded.pop_back();
 		}
 		
