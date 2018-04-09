@@ -80,6 +80,8 @@
 #include "vectorMath.h"
 #include "nonlinearFit.h"
 #include "columnFile.h"
+
+// these are includes instead of being compiled separately for some legacy reasons
 #include <AMS-DEMO/GeneralOptimizationAlgorithm.cpp>
 #include <AMS-DEMO/utilities.cpp>
 
@@ -326,9 +328,13 @@ void runOptimization(int argc, char** argv) {
 
 	if (alg.updateSettings()) {
 #ifdef NO_MPI
-		std::cerr << "##### Running EkgSim v3 based optimization, "
+		std::cerr << "##### Running EkgSim v4 based optimization, "
 			<< (alg.settings.evaluation.criteriaVectorLength == 1 ? "DE ##" : "DEMO " )
 			<< "#################\n" << std::flush;
+		std::cerr << "#####  - v3 was used and published from 2008 and 2013\n"
+			<< "#####  - v4 was optimized for vectorization and added measuring point optimization in 2017/2018\n"
+			<< std::flush;
+
 
 		// run calls:
 		//	- population initialization
@@ -338,9 +344,11 @@ void runOptimization(int argc, char** argv) {
 		alg.setCommunicator(mpi.getCommunicator());
 
 		if (mpi.getCommunicator().getRank() == 0) {
-			std::cerr << "##### Running EkgSim v3 based optimization, "
+			std::cerr << "##### Running EkgSim v4 based optimization, "
 				<< (alg.settings.evaluation.criteriaVectorLength == 1 ? "DE" : "DEMO" )
-				<< " with MPI on " << mpi.getCommunicator().getSize() << " CPUs #####\n"
+				<< " with MPI on " << mpi.getCommunicator().getSize() << " CPUs #####\n";
+			std::cerr << "#####  - v3 was used and published from 2008 and 2013\n"
+				<< "#####  - v4 was optimized for vectorization and added measuring point optimization in 2017/2018\n"
 				<< std::flush;
 			alg.run();
 		} else {

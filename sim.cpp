@@ -70,7 +70,6 @@
 #include "SimSettings.h"
 
 
-
 /**
     approximated derivative of AP in the defined time (x)
 **/
@@ -328,7 +327,7 @@ class SimImplementation {
 	std::auto_ptr<EkgSim> sim;
 	/// target APs
 	std::vector<std::vector<double> > targets;
-	/// DEPRICATED target offsets (used in comparison function) 
+	/// DEPRECATED target offsets (used in comparison function) 
 	std::vector<double> targetOffsets;
 	
 	/// backup of layer aps, used for output
@@ -350,6 +349,8 @@ class SimImplementation {
 	/// set of WohlfartPlus params that are allowed to vary during the optimization
 	std::set<char> variableWohlfartParams; 
 	
+	size_t numDisplacementParams, numWohlfartParams;
+	
 public:
 	SimSettings settings;
 	OutputSettings outSettings;
@@ -363,16 +364,13 @@ public:
 		/// initialization
 		
 		/// 1. load and apply simulator settings (one .ini file)
-		// settings for the optimizer
-		settings.load("simulator.ini");
-		// settings for the simulator
 		std::cerr << "***** setting up Ekg Simulator *****************************\n";
-		sim = std::auto_ptr<EkgSim>(new EkgSim);
-		sim->loadSettings("simulator.ini");
+		loadSettings("simulator.ini");
 		
 		/// 2. shape, APs, conduction, measuring points
 		sim->loadTransferMatrix();
 		sim->loadMeasuringPoints();
+		numDisplacementParams = settings.measuringPointsDisplacementIsInput ? sim->numMeasurements()*2 : 0;
 		sim->loadShape();
 		
 		/// 3. either calculate excitation sequence or use the precalculated one
@@ -423,6 +421,15 @@ public:
 		std::cerr << "\n";
 	}
 	
+	void loadSettings(const char* fname) {
+		// settings for the optimizer
+		settings.load(fname);
+		
+		// settings for the simulator (sadly loading happens twice)
+		sim = std::auto_ptr<EkgSim>(new EkgSim);
+		sim->loadSettings(fname);
+	}
+	
 	/// evaluate an individual (do a simulation) and return violation
 	double eval(const Input& solution, Value& result) {
 		static size_t num = 0;
@@ -435,6 +442,25 @@ public:
 		
 		{
 			ScopeTimer t(pt);
+			
+			// make sure solution contains enough values to represent all these parameters
+			if (solution.size() < numWohlfartParams+numDisplacementParams)
+				throw std::runtime_error("Solution does not contain enough values");
+			
+			if (settings.measuringPointsDisplacementIsInput) {
+				// take displacements into a separate vector
+				std::vector<EkgSim::PositionVec> displacements(sim->numMeasurements());	
+				for (size_t i = 0; i < sim->numMeasurements(); ++i) {
+					displacements[i][0] = solution[numWohlfartParams+i*2];
+					displacements[i][1] = solution[numWohlfartParams+i*2+1];
+					displacements[i][2] = 0;
+				}
+				
+				// use the displacements
+				sim->moveMeasuringPoints(displacements);
+			}
+			
+			// now simulate (only wohlfart parameters are needed here, but whole solution can be passed on, since the extra values in it will not effet the solving procedure)
 			switch (interpolationType) {
 			case between_endo_epi:
 				evalViolation = simUsingBorderAps(solution);
@@ -458,6 +484,19 @@ public:
 	template<class Iterator>
 	void setWohlfartFreeParams(Iterator begin, Iterator end) {
 		std::copy(begin, end, std::inserter(variableWohlfartParams, variableWohlfartParams.begin()));
+		
+		// determine number of wohlfart parameters
+		numWohlfartParams = 0;
+		switch (interpolationType) {
+		case between_endo_epi:
+			numWohlfartParams = variableWohlfartParams.size()*2;
+			break;
+		case between_endo_mid_epi:
+			numWohlfartParams = variableWohlfartParams.size()*3;
+			break;
+		default:
+			break;
+		}
 	}
 	
 	/// interpolation type and the free parameters to wohlfart must be set before calling this function
@@ -509,6 +548,21 @@ public:
 			}
 			
 			numCriteria = deducedNumOfCriteria;
+			
+			if (settings.measuringPointsDisplacementIsInput) {
+				// add 2 coordinates per measuring point as genes 
+				numGenes += numDisplacementParams;
+				
+				if (settings.displacementMin.empty())
+					settings.displacementMin.push_back(0);
+				if (settings.displacementMax.empty())
+					settings.displacementMax.push_back(0);
+				// also add value bounds for these genes
+				for (int i = 0; i < (int)numDisplacementParams; ++i) {
+					gMin.push_back(settings.displacementMin[std::min(i, (int)settings.displacementMin.size()-1)]);
+					gMax.push_back(settings.displacementMax[std::min(i, (int)settings.displacementMax.size()-1)]);
+				}
+			}
 		} catch(...) {
 			throw std::runtime_error("failed to set gene min and max from the interpolation type and the free parameters list");
 		}
@@ -694,11 +748,11 @@ protected:
 			size_t solutionI = 0;
 			double violation = 0.0;
 			
-			if (solution.size() != (2 * variableWohlfartParams.size())) {
+			if (solution.size() != (numDisplacementParams + numWohlfartParams)) {
 				std::ostringstream temp;
 				temp << "chromosome size does not agree with the combination of the number of free "
 					<< "Wohlfart parameters and the selected interpolation procedure (" 
-					<< solution.size() << " != 2*" << variableWohlfartParams.size() << ")";
+					<< solution.size() << " != " << numDisplacementParams << "+" << numWohlfartParams << ")";
 				throw std::runtime_error(temp.str());
 			}
 			
@@ -766,11 +820,11 @@ protected:
 			double violation = 0.0;
 			size_t absoluteMidPos = (size_t)floor(settings.midPosition * (numberOfLayers-1) + 0.5);
 			
-			if (solution.size() != (3 * variableWohlfartParams.size())) {
+			if (solution.size() != (numDisplacementParams + numWohlfartParams)) {
 				std::ostringstream temp;
 				temp << "chromosome size does not agree with the combination of the number of free "
 					<< "Wohlfart parameters and the selected interpolation procedure (" 
-					<< solution.size() << " != 3*" << variableWohlfartParams.size() << ")";
+					<< solution.size() << " != " << numDisplacementParams << "+" << numWohlfartParams << ")";
 				throw std::runtime_error(temp.str());
 			}
 			
@@ -1040,6 +1094,10 @@ void OptimizationFunction::operator() (const Input& solution, Value& result, dou
 
 void OptimizationFunction::getGeneParams(size_t& numGenes, size_t& numCriteria, std::vector<double>& gMin, std::vector<double>& gMax) {
 	impl->getGeneParams(numGenes, numCriteria, gMin, gMax);
+	geneMin.resize(gMin.size());
+	geneMax.resize(gMax.size());
+	std::copy(gMin.begin(), gMin.end(), geneMin.begin());
+	std::copy(gMax.begin(), gMax.end(), geneMax.begin());
 }
 
 
@@ -1047,4 +1105,11 @@ void OptimizationFunction::getEvolutionaryParams(size_t& numGenerations, size_t&
 	numGenerations = impl->settings.numGenerations;
 	popSize = impl->settings.populationSize;
 	queueSize = impl->settings.queueSize;
+}
+
+void OptimizationFunction::normalize(Input& solution) const {
+	for (size_t i = 0; (i < geneMin.size()) && (i < solution.size()); ++i)
+		if (solution[i] < geneMin[i]) solution[i] = geneMin[i];
+	for (size_t i = 0; (i < geneMax.size()) && (i < solution.size()); ++i)
+		if (solution[i] > geneMax[i]) solution[i] = geneMax[i];
 }

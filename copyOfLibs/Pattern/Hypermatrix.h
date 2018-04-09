@@ -259,6 +259,34 @@ namespace Pattern {
 			T 								l = sqrLength(v);
 			return l * sqrt(l);
 		}
+		
+		/// normalize the input vector (inplace)
+		inline friend void normalize(Vector& v) {
+			T l = std::sqrt(sqrLength(v));
+			if (l != 0)
+				v *= 1.0/l;
+			else 
+				v *= 0.0;
+		}
+		
+		/// cross product of two vectors
+		inline friend Vector cross(const Vector &a, const Vector &b) {
+			// this function should be enabled only for vectors of 3 elements ...
+			if (N != 3)
+				return Vector((T)(1.0/0.0));
+				 
+			Vector ab;
+			ab[0] = a[1]*b[2] - a[2]*b[1];
+			ab[1] = a[2]*b[0] - a[0]*b[2];
+			ab[2] = a[0]*b[1] - a[1]*b[0];
+			return ab;
+		}
+		
+		inline friend Vector operator* (T scalar, const Vector& v) {
+			Vector result = v;
+			result*=scalar;
+			return result;
+		}
 	};
 
 	template<class T, size_t N>
