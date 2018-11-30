@@ -17,9 +17,9 @@ apt-get install make build-essential libopenmpi-dev unzip openmpi-bin ssh
 
 If you want to download the latest stable version (original simulator) use:
 ~~~
-wget https://github.com/synergy-twinning/ekgsim/archive/v0.1.4.zip -O ekgsim.zip
+wget https://github.com/synergy-twinning/ekgsim/archive/v0.1.5.zip -O ekgsim.zip
 unzip ekgsim.zip
-cd ekgsim-0.1.4/
+cd ekgsim-0.1.5/
 ~~~
 
 If you want to download the latest master version from the repository use:
