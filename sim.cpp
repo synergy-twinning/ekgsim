@@ -411,13 +411,22 @@ public:
 			break;
 		}
 		deducedNumOfCriteria = baseDeducedNumOfCriteria;
-		if (settings.peakPositionIsCriterion)
+        std::cerr << " base number of criteria = " << deducedNumOfCriteria << " (" << 
+            (SimSettings::mode_every_lead_is_criterium ? "every lead is criterion" : "sum of leads is a criterion") << ")\n";
+            
+		if (settings.peakPositionIsCriterion) {
 			deducedNumOfCriteria += baseDeducedNumOfCriteria;
-		if (settings.fastApproxIsCriterion)
+            std::cerr << "   peak positions (per every lead) are also criteria\n";
+        }
+		if (settings.fastApproxIsCriterion) {
 			++deducedNumOfCriteria;
-		if (settings.endoEpiMinCriterionDelay >= 0)
+            std::cerr << "   fast approximation is also a criterion\n";
+        }
+		if (settings.endoEpiMinCriterionDelay >= 0) {
 			++deducedNumOfCriteria;
-		std::cerr << " deduced number of criteria = " << deducedNumOfCriteria << "\n";
+            std::cerr << "   endo-epi min delay is also a criterion (" << settings.endoEpiMinCriterionDelay << ")\n";
+        }
+		std::cerr << " total number of criteria = " << deducedNumOfCriteria << "\n";
 		std::cerr << "\n";
 	}
 	
@@ -629,6 +638,8 @@ protected:
 				// compare sim measurement to predefined shape
 				switch (settings.comparisonMode) {
 					case SimSettings::mode_correlation:
+                        // last parameter (offset) is 0 .. correlation will not look for the best offset but will use 0
+                        // this only works since the targets were offset in advance (when loading) so they match the simulation time interval
 						cr = statisticalCorrelationCoeff(simResult, targets[i], 0);
 						cr.bestValue = 1.0 - cr.bestValue;
 						break;
@@ -701,6 +712,7 @@ protected:
 	void runApproxAndSim() {
 		sim->runApproximation(settings.fastApproxEpiDelay, approximateECG);
 		
+        // approximate simulation, use first target to calculate fitness
 		approxEcgCriteria = 2;
 		if (settings.fastApproxIsCriterion || (settings.fastApproxLimit < 2)) {
 			ConvolutionResult<double> cr;
@@ -979,7 +991,11 @@ protected:
 	}
 	
 	
-	/// load target curves from .column file 
+    /**
+     * @brief load target curves from .column file 
+     * Load the targets from startTime onwards and resample them in the set time step
+     * @param fname
+     */
 	void loadTargets(const char* fname) {
 		ColumnFile targetFile(fname);
 		
@@ -988,12 +1004,14 @@ protected:
 		
 		// targets file includes time?
 		double targetTimeStep = sim->getSettings().inputActionPotentialsTimeStep; // this seems fishy
-							// was inputActionPotentialsTimeStep intendet for this use?
-		size_t timeOfs = std::min(size_t(1), targetFile.numColumns() - 1);
-		if (timeOfs > 0) {
+							// was inputActionPotentialsTimeStep intended for this use?
+                            
+		size_t ecgColumns = std::min(size_t(1), targetFile.numColumns() - 1);
+		if (ecgColumns > 0) {
 			targetTimeStep = targetFile[0][1] - targetFile[0][0];
 		}
-		for (size_t i = timeOfs; i < targetFile.numColumns(); ++i) {
+        int resampledStart = sim->getSettings().simulationStart / targetTimeStep;
+		for (size_t i = ecgColumns; i < targetFile.numColumns(); ++i) {
 			double tMin, tMax;
 			minAndMax(tMin, tMax, targetFile[i]);
 			
@@ -1001,16 +1019,12 @@ protected:
 			mult(targetFile[i], 1.0 / (tMax - tMin));
 			
 			// resample to desired timestep and copy to targets
-			resample(targetFile[i], targets[i-timeOfs], targetTimeStep / sim->getSettings().simulationTimeStep);
+			resample(targetFile[i], targets[i-ecgColumns], targetTimeStep / sim->getSettings().simulationTimeStep, resampledStart);
 			
-			// offset must move target in such a way that its min matches 1 and its max 
-			// matches 2
-			targetOffsets[i-timeOfs] = 1.0 - (tMin / (tMax - tMin));
+			// offset must move target in such a way that its min matches 1 and its max matches 2
+			targetOffsets[i-ecgColumns] = 1.0 - (tMin / (tMax - tMin));
 		}
-		
-		if (timeOfs > 0)
-			targetTimeStep = targetFile[0][1] - targetFile[0][0];
-		
+        
 		{
 			std::vector<SimLib::saveVecElement>		exportVec(targets.size());
 			for (size_t i = 0; i < exportVec.size(); ++i) {
@@ -1021,7 +1035,7 @@ protected:
 			}
 			
 			std::string outputDir = ""; // should set this as parameter
-			exportVectors(exportVec, (outputDir + "target_chk.column").c_str(), targetFile[0][0], 
+			exportVectors(exportVec, (outputDir + "target_chk.column").c_str(), sim->getSettings().simulationStart, 
 				sim->getSettings().simulationTimeStep);
 		}
 		//timeMultiplier = sim.getSettings().simulationTimeStep;

@@ -443,7 +443,7 @@ namespace SimLib {
 		}
 
 		// simulation
-		cout << "simulation time step = " << s.simulationTimeStep << "\n" << "simulation length = "
+		cout << "simulation start = " << s.simulationStart << "\n" << "simulation time step = " << s.simulationTimeStep << "\n" << "simulation length = "
 			<< s.simulationLength << "\n" << "total steps = "
 			<< s.simulationLength / s.simulationTimeStep << "\n";
 	}

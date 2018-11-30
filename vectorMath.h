@@ -207,18 +207,19 @@ void minAndMax(T& minOut, T& maxOut, const std::vector<T>& src) {
 
 /// linear resample (sampling frequency is multiplied by factor)
 template<class T>
-void resample(const std::vector<T>& src, std::vector<T>& dest, double factor) {
+void resample(const std::vector<T>& src, std::vector<T>& dest, double factor, int startOffset = 0) {
 	if (factor == 1) {
 		dest = src;
 	} else {
-		dest.resize(1u + (size_t)ceil((src.size() - 1) * factor));
+		dest.resize(1u + (size_t)ceil((src.size() - 1 - startOffset) * factor));
 		
 		for (size_t i = 0; i < dest.size(); ++i) {
-			double oldPos = i/factor;
-			double fPos = floor(oldPos);
-			double cPos = 1.0 + fPos;
+			double oldPos = i/factor + startOffset;
+			size_t fPos = (size_t)floor(oldPos);        // floor of the old position
+			size_t cPos = 1.0 + fPos;                   // ceil of the old position (simplified since it can be different than fPos)
+            
 			if ((size_t)cPos < src.size())
-				dest[i] = src[(size_t)cPos] * (oldPos - fPos) + src[(size_t)fPos] * (cPos - oldPos);
+				dest[i] = src[cPos] * (oldPos - fPos) + src[fPos] * (cPos - oldPos);
 			else
 				dest[i] = src.back();
 		}
