@@ -17,9 +17,9 @@ apt-get install make build-essential libopenmpi-dev unzip openmpi-bin ssh
 
 If you want to download the latest stable version (original simulator) use:
 ~~~
-wget https://github.com/synergy-twinning/ekgsim/archive/v0.1.1.zip -O ekgsim.zip
+wget https://github.com/synergy-twinning/ekgsim/archive/v0.1.4.zip -O ekgsim.zip
 unzip ekgsim.zip
-cd ekgsim-0.1.1/
+cd ekgsim-0.1.4/
 ~~~
 
 If you want to download the latest master version from the repository use:
@@ -65,6 +65,8 @@ cd testRun
 ~~~
 
 ## Sequential execution
+
+### Versions < v0.1.4?
 The -sim parameter is a vector of numeric parameters of length 21, separated by commas (no spaces!). Parameters need to be in the following ranges:
 ~~~
 min = 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200, 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200, 1.5, 0.85, 0.05, 0.0003, 0.01,  0.01, 200
@@ -88,6 +90,23 @@ All done
 ~~~~
 
 In order to use the simulator for the optimization, you will need to parse the standard output for the criteria.
+
+### Versions == v0.1.4
+In this version the simulator was modified to accept additional parameters for electrodes positioning. Parameters now include:
+
+- 4 x 3 (5th, 6th, 7th and 8th) wohlfart's parameters
+- 2 x 2 electrodes position parameters
+
+Together that is 16 parameters with the following bounds:
+ ~~~
+min = 0.0003, 0.01,  0.01, 200, 0.0003, 0.01,  0.01, 200, 0.0003, 0.01,  0.01, 200, -50, -50, -50, -50
+max = 0.0010, 0.10,  0.10, 400, 0.0010, 0.10,  0.10, 400, 0.0010, 0.10,  0.10, 400, 50, 50, 50, 50
+~~~
+
+Use the same call as before to run the simulation, for example:
+~~~~
+./ekgSim test -sim 0.00035813,0.0890636,0.0632915,226.183,0.000369406,0.0965625,0.0523254,232.278,0.000710767,0.0720323,0.0187579,200.93,23,22,15,13 -out result
+~~~~
 
 # Running the optimization
 ## Sequential mode
