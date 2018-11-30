@@ -91,7 +91,7 @@ All done
 
 In order to use the simulator for the optimization, you will need to parse the standard output for the criteria.
 
-### Versions == v0.1.4
+### Versions >= v0.1.4
 In this version the simulator was modified to accept additional parameters for electrodes positioning. Parameters now include:
 
 - 4 x 3 (5th, 6th, 7th and 8th) wohlfart's parameters
